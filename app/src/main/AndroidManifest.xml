@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="login.qiyun.com.mydemo">
+
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.CALL_PHONE" />
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+    <uses-permission android:name="com.android.launcher.permission.READ_SETTINGS" />
+    <uses-permission android:name="android.permission.WAKE_LOCK" />
+    <uses-permission android:name="android.permission.CHANGE_WIFI_STATE" />
+    <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
+    <uses-permission android:name="android.permission.GET_TASKS" />
+    <uses-permission android:name="android.permission.WRITE_SETTINGS" />
+
+    <application
+        android:name=".application.MyApplication"
+        android:allowBackup="true"
+        android:icon="@mipmap/ic_launcher"
+        android:label="@string/app_name"
+        android:supportsRtl="true"
+        android:theme="@style/AppTheme">
+        <meta-data
+            android:name="com.baidu.lbsapi.API_KEY"
+            android:value="hzQ4LTGDw42AnsrAY782fgfRzg5ya17Q" />
+
+        <activity android:name=".activity.MainActivity">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+        <activity android:name=".activity.Setting_nameActivity" />
+        <activity android:name=".activity.Setting_ChangePwdActivity" />
+        <activity android:name=".activity.Setting_comActivity" />
+        <activity android:name=".activity.Setting_aboutActivity" />
+        <activity android:name=".activity.LoginActivity" />
+        <activity android:name=".activity.LogoutActivity" />
+        <activity android:name=".activity.OrderDetailActivity" />
+        <activity android:name=".activity.LookContractActivity" />
+        <activity android:name=".activity.LookEventActivity" />
+        <activity android:name=".activity.ChooseNodeActivity" />
+        <activity android:name=".activity.ShowShipOnTheMap" />
+        <activity android:name=".activity.EventActivity"></activity>
+        <activity
+            android:name="com.lidong.photopicker.PhotoPickerActivity"
+            android:theme="@style/PhotoPickerTheme"
+            android:configChanges="orientation|screenSize"/>
+        <activity android:name="com.lidong.photopicker.PhotoPreviewActivity"
+            android:theme="@style/PhotoPickerTheme"/>
+    </application>
+
+</manifest>

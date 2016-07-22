@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="colorPrimary">#3F51B5</color>
+    <color name="colorPrimaryDark">#303F9F</color>
+    <color name="colorAccent">#FF4081</color>
+    <color name="colorTabText_enable">#1B97A8</color>
+    <color name="colorTabText">#77777A</color>
+    <color name="tab_bg">#77cccccc</color>
+    <color name="tab_bg0">#00000000</color>
+    <color name="setting_out_press">#aaff0000</color>
+    <color name="setting_out">#ffff0000</color>
+
+    <color name="tab_text_color_selected">#ff0084ff</color> <!-- 选中文字颜色 -->
+    <color name="tab_text_color_normal">#ff737373</color> <!-- 未选中文字颜色 -->
+
+    <color name="bg_tab_pressed">#6633b5e5</color><!-- 蓝色 -->
+    <color name="bg_tab_normal">#00000000</color>
+    <color name="photopicker_background">#181819</color>
+</resources>

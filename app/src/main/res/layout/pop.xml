@@ -1,0 +1,125 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:background="@drawable/popupmap"
+    android:gravity="center_vertical"
+    android:orientation="vertical"
+    android:paddingLeft="5dp"
+    android:paddingRight="5dp">
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:gravity="center">
+
+        <TextView
+            android:id="@+id/tv_pop_shipname"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="船名+ mmsi"
+            android:textColor="#ff0000"
+            android:textSize="15sp" />
+
+
+        <TextView
+            android:id="@+id/tv_detail"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="20dp"
+            android:text="详情"
+            android:drawableLeft="@drawable/detail"
+            android:textColor="#0000ff"
+            android:textSize="15sp"/>
+
+
+    </LinearLayout>
+
+
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="船首向："
+            android:textColor="#000000"
+            android:textSize="15sp" />
+
+        <TextView
+            android:id="@+id/tv_course"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="#000000"
+            android:text="10"
+            android:textSize="15sp" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:paddingLeft="10dp"
+            android:textColor="#000000"
+            android:text="速度："
+            android:textSize="15sp" />
+
+        <TextView
+            android:id="@+id/tv_speed"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="9"
+            android:textColor="#000000"
+            android:textSize="15sp" />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="船舶类型："
+            android:textColor="#000000"
+            android:textSize="15sp" />
+
+        <TextView
+            android:id="@+id/tv_shiptype"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="货船"
+            android:textColor="#000000"
+            android:textSize="15sp" />
+
+    </LinearLayout>
+
+ <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="最后时间："
+            android:textColor="#000000"
+            android:textSize="15sp" />
+
+        <TextView
+            android:id="@+id/tv_postime"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="2016-07-15 11:13:51"
+            android:textColor="#000000"
+            android:textSize="15sp" />
+
+
+    </LinearLayout>
+
+
+</LinearLayout>

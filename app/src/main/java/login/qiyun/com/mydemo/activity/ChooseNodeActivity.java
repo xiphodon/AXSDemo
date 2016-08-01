@@ -47,6 +47,7 @@ public class ChooseNodeActivity extends BaseActivity {
                     intent.setClass(ChooseNodeActivity.this,EventActivity.class);
                     intent.putExtra("NodeID",list.get(position).NodeID + "");
                     intent.putExtra("NodeName",list.get(position).NodeName);
+                    intent.putExtra("orderSignID",orderSignID);
                     startActivity(intent);
                 }
 

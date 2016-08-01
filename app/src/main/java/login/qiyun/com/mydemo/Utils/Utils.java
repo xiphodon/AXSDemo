@@ -6,6 +6,7 @@ import android.graphics.drawable.Drawable;
 import android.os.Handler;
 import android.os.Process;
 
+
 import com.lidroid.xutils.HttpUtils;
 
 import login.qiyun.com.mydemo.application.MyApplication;
@@ -29,7 +30,7 @@ public class Utils {
     public static String URL_ORDER_GET_ORDER_SIGN_NODE = "/Order/GetOrderSignNode";
     public static String URL_MYSHIPS_SHIPDETAIL = "/MyShips/ShipDetail";
     public static String URL_ORDER_GET_ORDER_SIGN_NODE_ITEM = "/Order/GetOrderSignNodeItem";
-    public static String URL_ORDER_ADD_FOLLOW_EVENT = "Order/AddFollowEvent";
+    public static String URL_ORDER_ADD_FOLLOW_EVENT = "/Order/AddFollowEvent";
 
     private static HttpUtils httpUtils;
 

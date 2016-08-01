@@ -1,6 +1,8 @@
 package login.qiyun.com.mydemo.activity;
 
 import android.content.Intent;
+import android.os.Handler;
+import android.os.Message;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -13,6 +15,7 @@ import android.widget.GridView;
 import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
 import com.lidong.photopicker.ImageCaptureManager;
@@ -21,12 +24,17 @@ import com.lidong.photopicker.PhotoPreviewActivity;
 import com.lidong.photopicker.SelectModel;
 import com.lidong.photopicker.intent.PhotoPickerIntent;
 import com.lidong.photopicker.intent.PhotoPreviewIntent;
+import com.squareup.okhttp.Request;
 
 import org.json.JSONArray;
 
+import java.io.File;
+import java.io.IOException;
 import java.util.ArrayList;
 
 import login.qiyun.com.mydemo.R;
+import login.qiyun.com.mydemo.Utils.OkHttpUtils;
+import login.qiyun.com.mydemo.Utils.Utils;
 import login.qiyun.com.mydemo.adapter.NodeEventListAdapter;
 import login.qiyun.com.mydemo.bean.NodeEvent;
 import login.qiyun.com.mydemo.protocol.NodeEventProtocol;
@@ -48,12 +56,28 @@ public class EventActivity extends BaseActivity {
 
     private GridView gridView;
     private EditText et_remark;
+    private ImageView iv_camera;
+    private ImageView iv_alarm;
+    private ImageView iv_voice;
+    private File file;
+
+    private Handler handler = new Handler() {
+        public void handleMessage(Message msg) {
+            Log.i("response", String.valueOf(msg.obj));
+            if(msg.obj.equals("SUCCESS")){
+                Toast.makeText(EventActivity.this, "上传成功。", Toast.LENGTH_SHORT).show();
+            }
+            super.handleMessage(msg);
+        }
+    };
+    private String orderSignID;
 
     @Override
     protected void initUI() {
         Intent intent = getIntent();
         nodeID = intent.getStringExtra("NodeID");
         nodeName = intent.getStringExtra("NodeName");
+        orderSignID = intent.getStringExtra("orderSignID");
 
         view = getView();
         lv_event = (ListView) view.findViewById(R.id.lv_event);
@@ -75,36 +99,10 @@ public class EventActivity extends BaseActivity {
     }
 
     private void initEventClick() {
-        ImageView iv_camera = (ImageView) view.findViewById(R.id.iv_camera);
-        ImageView iv_alarm = (ImageView) view.findViewById(R.id.iv_alarm);
-        ImageView iv_voice = (ImageView) view.findViewById(R.id.iv_voice);
+        iv_camera = (ImageView) view.findViewById(R.id.iv_camera);
+        iv_alarm = (ImageView) view.findViewById(R.id.iv_alarm);
+        iv_voice = (ImageView) view.findViewById(R.id.iv_voice);
 
-        iv_camera.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                //相机
-                PhotoPickerIntent intent = new PhotoPickerIntent(EventActivity.this);
-                intent.setSelectModel(SelectModel.MULTI);
-                intent.setShowCarema(true); // 是否显示拍照
-                intent.setMaxTotal(6); // 最多选择照片数量，默认为6
-                intent.setSelectedPaths(imagePaths); // 已选中的照片地址， 用于回显选中状态
-                startActivityForResult(intent, REQUEST_CAMERA_CODE);
-            }
-        });
-
-        iv_alarm.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                //异常
-            }
-        });
-
-        iv_voice.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                //声音
-            }
-        });
 
         initCamera();
         initRemark();
@@ -120,18 +118,56 @@ public class EventActivity extends BaseActivity {
             @Override
             public void onClick(View v) {
                 //提交
+                Log.d("333333", imagePaths.get(0));
+
+
+
+
+
+                try {
+                    OkHttpUtils.postAsyn(Utils.URL + Utils.URL_ORDER_ADD_FOLLOW_EVENT + "?json={\"Extra\":\"<node><item><key>26<\\/key><value>2016-07-29 16:14<\\/value><\\/item><\\/node>\",\"OrderHID\":\"1\",\"Node\":51,\"OrderID\":\"1\",\"Latitude\":31.168062,\"UserID\":\"1040\",\"Longitude\":121.317282,\"Remark\":\"\",\"OrderSignID\":\"8\"}", new OkHttpUtils.ResultCallback<String>() {
+                        @Override
+                        public void onError(Request request, Exception e) {
+                            Log.d("222222", "2");
+                        }
+
+                        @Override
+                        public void onResponse(String response) {
+                            Log.d("111111", response.toString());
+                        }
+
+                    }, new File(imagePaths.get(0)), "file");
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+            }
+
+        });
+    }
+
+
+    private void initVoice() {
+        //声音
+
+        iv_voice.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                //声音
+
 
 
             }
         });
     }
 
-    private void initVoice() {
-        //声音
-    }
-
     private void initAlarm() {
         //异常
+        iv_alarm.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                //异常
+            }
+        });
     }
 
     private void initRemark() {
@@ -142,6 +178,20 @@ public class EventActivity extends BaseActivity {
 
     private void initCamera() {
         //相机
+        iv_camera.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                //相机
+                PhotoPickerIntent intent = new PhotoPickerIntent(EventActivity.this);
+                intent.setSelectModel(SelectModel.MULTI);
+                intent.setShowCarema(true); // 是否显示拍照
+                intent.setMaxTotal(6); // 最多选择照片数量，默认为6
+                intent.setSelectedPaths(imagePaths); // 已选中的照片地址， 用于回显选中状态
+                startActivityForResult(intent, REQUEST_CAMERA_CODE);
+            }
+        });
+
+
         gridView = (GridView) view.findViewById(R.id.gridView);
 
         int cols = getResources().getDisplayMetrics().widthPixels / getResources().getDisplayMetrics().densityDpi;
